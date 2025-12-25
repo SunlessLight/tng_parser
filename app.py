@@ -106,12 +106,15 @@ def parse_table(all_rows):
         balance = True
     return {"initial": ini_bal, "final": fin_bal, "money_in": money_in, "money_out": money_out, "balance": balance}
 
+#Flask codes
 @app.route("/", methods=["GET","POST"])
 def index():
+    # Parse statment if POST
     if request.method == "POST":
         file = request.files.get("file")
         password = request.form.get("password")
 
+        #Flash messages if not file or password
         if not file or not password:
             flash("Please upload a file and enter a password")
             return redirect("/")
@@ -130,6 +133,7 @@ def index():
             flash("Please upload a TNG pdf statement")
         except Exception as e:
             flash(f"Error: {e}. Please try again")
+    # Go to homepage if GET
     return render_template("index.html", result = None)
 
 if __name__ == "__main__":app.run(debug=True)

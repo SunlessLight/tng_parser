@@ -17,7 +17,7 @@ body {
     background: #ffffff;
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .dashboard {
@@ -69,4 +69,24 @@ body {
     font-size: 0.7rem;
     color: #666;
     margin-bottom: 5px;
+}
+
+nav {
+    background: #007bff;
+    padding: 1rem 2rem;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    color: #888;
+    font-size: 0.9rem;
 }
