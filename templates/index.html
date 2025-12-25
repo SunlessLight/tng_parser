@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>TNG Statement Parser</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for m in messages %}
+    <p class="error">{{m}}</p>
+    {% endfor &}
+    {% endif %}
+    {% endwith %}
+
+    {% if not result %}
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".pdf" required>
+        <input type="password" name="password" placeholder="PDF password" required>
+        <button type="sumbit">Analyse Statement</button>
+    </form>
+
+    {% else %}
+    <div class="dashboard">
+        <div class="stat-box info">
+            <small>Initial Balance</small>
+            <p>RM {{ result.initial }}</p>
+        </div>
+        <div class="stat-box info">
+            <small>Final Balance</small>
+            <p>RM {{ result.final }}</p>
+        </div>
+        <div class="stat-box in">
+            <small>Money In</small>
+            <p>RM {{ result.money_in }}</p>
+        </div>
+        <div class="stat-box out">
+            <small>Money Out</small>
+            <p>RM {{ result.money_out }}</p>
+        </div>
+        <div class="stat-box status {{'valid' if result.balance else 'invalid'}}">
+            <small>System Checksum</small>
+            <p>{{"✅ Verified" if result.balance else "❌ Discrepancy Found" }}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
